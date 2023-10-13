@@ -6,13 +6,17 @@ import { CalendarComponent } from './calendar/components/calendar/calendar.compo
 
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { DayCellComponent } from './calendar/components/day-cell/day-cell.component';
+import { HeaderComponent } from './core/components/header/header.component';
+import { TransformMonthNamePipe } from './calendar/pipes/transform-month-name.pipe';
+import { SetWeekDayNamesPipe } from './calendar/pipes/set-week-day-names.pipe';
 
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
-  declarations: [AppComponent, CalendarComponent],
+  declarations: [AppComponent, CalendarComponent, DayCellComponent, HeaderComponent, TransformMonthNamePipe, SetWeekDayNamesPipe],
   imports: [BrowserModule],
-  providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

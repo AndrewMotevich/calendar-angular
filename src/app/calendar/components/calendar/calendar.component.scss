@@ -1,0 +1,25 @@
+:host {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.calendar-wrapper{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.month-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

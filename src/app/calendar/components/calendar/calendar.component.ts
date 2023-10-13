@@ -1,36 +1,37 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarComponent implements OnInit {
-  currentDate: Date = new Date();
+  public currentDate: Date = new Date();
 
-  weeks: Date[][] = [];
-  daysOfWeek: string[] = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
+  public daysOnScreen: Date[] = [];
 
   constructor(private cdr: ChangeDetectorRef){}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.generateCalendar();
   }
 
-  prevMonth() {
+  public prevMonth() {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.generateCalendar();
+    this.currentDate = new Date(this.currentDate)
   }
 
-  nextMonth() {
+  public nextMonth() {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.generateCalendar();
+    this.currentDate = new Date(this.currentDate)
   }
 
-  generateCalendar() {
-    this.weeks = [];
+  public generateCalendar() {
+    this.daysOnScreen = [];
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
 
@@ -38,15 +39,11 @@ export class CalendarComponent implements OnInit {
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
     const startDate = new Date(firstDayOfMonth);
-    startDate.setDate(startDate.getDate() - (startDate.getDay() + 6) % 7); // Start from Monday
+    startDate.setDate(startDate.getDate() - (startDate.getDay() + 6) % 7);
 
     while (startDate <= lastDayOfMonth) {
-      const week: Date[] = [];
-      for (let i = 0; i < 7; i++) {
-        week.push(new Date(startDate));
+        this.daysOnScreen.push(new Date(startDate));
         startDate.setDate(startDate.getDate() + 1);
-      }
-      this.weeks.push(week);
     }
   }
 }

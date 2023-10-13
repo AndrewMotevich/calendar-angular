@@ -1,27 +1,16 @@
-<div class="container">
-  <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
-  <div class="row">
-    <div class="col-md-2">
-      <button class="btn btn-primary" (click)="prevMonth()">Предыдущий месяц</button>
-    </div>
-    <div class="col-md-8">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th *ngFor="let day of daysOfWeek">{{ day }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let week of weeks">
-            <td *ngFor="let day of week">
-              {{ day.getDate() }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-primary" (click)="nextMonth()">Следующий месяц</button>
+<div class="calendar-wrapper">
+  <div class="month-wrapper">
+    <button (click)="prevMonth()"><</button>
+    <h2>{{ currentDate | date: 'MMMM yyyy' : '' : 'ru' | titlecase | transformMonthName}}</h2>
+    <button (click)="nextMonth()">></button>
+    <button (click)="nextMonth()">Сегодня</button>
+  </div>
+
+  <div class="calendar">
+    <div class="calendar__grid">
+        <app-day-cell *ngFor="let day of daysOnScreen | setWeekDayNames">
+          <span class="day">{{ day }}</span>
+        </app-day-cell>
     </div>
   </div>
 </div>
