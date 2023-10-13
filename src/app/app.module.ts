@@ -10,12 +10,23 @@ import { DayCellComponent } from './calendar/components/day-cell/day-cell.compon
 import { HeaderComponent } from './core/components/header/header.component';
 import { TransformMonthNamePipe } from './calendar/pipes/transform-month-name.pipe';
 import { SetWeekDayNamesPipe } from './calendar/pipes/set-week-day-names.pipe';
+import { EventFormComponent } from './calendar/components/event-form/event-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
-  declarations: [AppComponent, CalendarComponent, DayCellComponent, HeaderComponent, TransformMonthNamePipe, SetWeekDayNamesPipe],
-  imports: [BrowserModule],
+  declarations: [
+    AppComponent,
+    CalendarComponent,
+    DayCellComponent,
+    HeaderComponent,
+    TransformMonthNamePipe,
+    SetWeekDayNamesPipe,
+    EventFormComponent,
+  ],
+  imports: [BrowserModule, ReactiveFormsModule, NgbModule, NgbPopoverModule],
   providers: [{ provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent],
 })

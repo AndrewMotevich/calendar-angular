@@ -2,15 +2,26 @@
   <div class="month-wrapper">
     <button (click)="prevMonth()"><</button>
     <h2>{{ currentDate | date: 'MMMM yyyy' : '' : 'ru' | titlecase | transformMonthName}}</h2>
-    <button (click)="nextMonth()">></button>
-    <button (click)="nextMonth()">Сегодня</button>
+    <button
+      class="btn btn-primary"
+      (click)="nextMonth()">
+      >
+    </button>
+    <button (click)="toCurrent()">Сегодня</button>
   </div>
 
   <div class="calendar">
     <div class="calendar__grid">
-        <app-day-cell *ngFor="let day of daysOnScreen | setWeekDayNames">
-          <span class="day">{{ day }}</span>
-        </app-day-cell>
+      <app-day-cell
+        [day]="day"
+        *ngFor="let day of daysOnScreen; let index = index"
+        [ngbPopover]="popover">
+        <span class="day">{{ day | setWeekDayNames : index}}</span>
+      </app-day-cell>
     </div>
   </div>
 </div>
+
+<ng-template #popover>
+  <app-event-form></app-event-form>
+</ng-template>

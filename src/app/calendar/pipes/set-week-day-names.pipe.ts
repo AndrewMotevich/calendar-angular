@@ -15,10 +15,8 @@ export class SetWeekDayNamesPipe implements PipeTransform {
     'Воскресение',
   ];
 
-  transform(value: Date[]): string[] {
-    return value.map((day, index) => {
-      if (index > 6) return day.getDate().toString();
-      return `${this.DAYS_OF_WEEK[index]}, ${day.getDate()}`;
-    });
+  transform(value: Date, index: number): string {
+      if (index > 6)  return value.getDate().toString()
+      return `${this.DAYS_OF_WEEK[index]}, ${value.getDate()}`
   }
 }
