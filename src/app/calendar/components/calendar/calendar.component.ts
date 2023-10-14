@@ -32,8 +32,6 @@ export class CalendarComponent implements OnInit {
     this.generateCalendar();
   }
 
-  public showPopover(){}
-
   private generateCalendar() {
     this.daysOnScreen = [];
     const year = this.currentDate.getFullYear();

@@ -2,39 +2,53 @@ import { Injectable } from '@angular/core';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
   private events: IEvent[] = [];
 
   constructor() {
-    // Load events from local storage
     const storedEvents = localStorage.getItem('events');
     if (storedEvents) {
-      this.events = JSON.parse(storedEvents);
+      this.events = JSON.parse(storedEvents, this.parseDate);
     }
   }
 
-  getEvents(): IEvent[] {
+  public getEvents(): IEvent[] {
     return this.events;
   }
 
-  addEvent(event: IEvent): void {
-    this.events.push(event);
+  public getEventByDate(date: Date): IEvent {
+    return this.events.find((event) => {
+      return event.date.toDateString() === date.toDateString();
+    });
+  }
+
+  public addEvent(event: Omit<IEvent, 'id'>): void {
+    this.events.push({ id: Date.now(), ...event });
     this.updateLocalStorage();
   }
 
-  editEvent(event: IEvent, index: number): void {
+  public editEvent(event: IEvent, index: number): void {
     this.events[index] = event;
     this.updateLocalStorage();
   }
 
-  deleteEvent(index: number): void {
-    this.events.splice(index, 1);
+  public deleteEvent(id: number): void {
+    this.events = this.events.filter((event) => event.id !== id);
     this.updateLocalStorage();
   }
 
   private updateLocalStorage() {
     localStorage.setItem('events', JSON.stringify(this.events));
+  }
+
+  private parseDate(key: string, value: unknown) {
+    if (key === 'date') {
+      const newDate = new Date(value as string);
+      newDate.setHours(0, 0, 0, 0);
+      return newDate;
+    }
+    return value;
   }
 }

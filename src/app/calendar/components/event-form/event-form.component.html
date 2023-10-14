@@ -1,15 +1,14 @@
 <form class="event-form" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-  <label for="title">Title:</label>
-  <input type="text" id="title" formControlName="title">
+  <input type="text" id="title" formControlName="title" placeholder="Событие">
 
-  <label for="date">Date:</label>
-  <input type="date" id="date" formControlName="date">
+  <input type="date" id="date" formControlName="date" placeholder="День/месяц/год">
 
-  <label for="participants">Participants:</label>
-  <input type="text" id="participants" formControlName="participants">
+  <input type="text" id="participants" formControlName="participants" placeholder="Имена участников">
 
-  <label for="description">Description:</label>
-  <textarea id="description" formControlName="description"></textarea>
+  <textarea id="description" formControlName="description" placeholder="Описание"></textarea>
 
-  <button type="submit">Submit</button>
+  <div>
+    <button type="submit">Готово</button>
+    <button>Удалить</button>
+  </div>
 </form>
