@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
+  private events$ = new Subject<IEvent[]>();
   private events: IEvent[] = [];
 
   constructor() {
@@ -14,8 +16,8 @@ export class EventService {
     }
   }
 
-  public getEvents(): IEvent[] {
-    return this.events;
+  public getEventsObserver(): Observable<IEvent[]> {
+    return this.events$.asObservable();
   }
 
   public getEventByDate(date: Date): IEvent {
@@ -26,16 +28,19 @@ export class EventService {
 
   public addEvent(event: Omit<IEvent, 'id'>): void {
     this.events.push({ id: Date.now(), ...event });
+    this.events$.next(this.events);
     this.updateLocalStorage();
   }
 
   public editEvent(event: IEvent, index: number): void {
     this.events[index] = event;
+    this.events$.next(this.events);
     this.updateLocalStorage();
   }
 
   public deleteEvent(id: number): void {
     this.events = this.events.filter((event) => event.id !== id);
+    this.events$.next(this.events);
     this.updateLocalStorage();
   }
 

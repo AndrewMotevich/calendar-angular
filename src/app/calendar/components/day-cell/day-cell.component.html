@@ -1,4 +1,4 @@
 <div [ngClass]="{'current-day': isToday}">
   <ng-content select=".day"></ng-content>
-  <div *ngIf="event">{{event.title}}</div>
+  <div>{{(event | async)?.title}}</div>
 </div>

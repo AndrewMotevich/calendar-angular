@@ -12,14 +12,17 @@
         [day]="day"
         *ngFor="let day of daysOnScreen; let index = index"
         [ngbPopover]="popover"
-        [autoClose]="'outside'">
+        [autoClose]="'outside'"
+        placement="end"
+        #popoverInstance="ngbPopover">
         <span class="day">{{ day | setWeekDayNames : index}}</span>
 
         <ng-template #popover>
-          <app-event-form [day]="day"></app-event-form>
+          <app-event-form
+            [day]="day"
+            [popover]="popoverInstance"></app-event-form>
         </ng-template>
       </app-day-cell>
     </div>
   </div>
 </div>
-
