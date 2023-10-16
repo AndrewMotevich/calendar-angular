@@ -2,8 +2,9 @@ import {
   Directive,
   DoCheck,
   ElementRef,
+  HostListener,
   Input,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import { CalendarService } from '../../shared/services/calendar.service';
 
@@ -11,6 +12,10 @@ import { CalendarService } from '../../shared/services/calendar.service';
   selector: '[appSelectDay]',
 })
 export class SelectDayDirective implements DoCheck {
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.renderer.addClass(this.el.nativeElement, 'selected');
+  }
   @Input() public day: Date;
   private selectedDate: Date;
 
