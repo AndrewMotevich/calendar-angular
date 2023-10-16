@@ -17,6 +17,7 @@ import { Observable, Subject, of, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DayCellComponent implements OnInit, OnDestroy {
+  @Input() public weekIndex: number;
   @Input() public day: Date;
   public currentDate = new Date();
   public isToday: boolean;

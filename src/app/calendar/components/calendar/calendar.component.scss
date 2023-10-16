@@ -6,6 +6,8 @@
   justify-content: center;
 }
 .calendar-wrapper{
+  width: 49rem;
+  height: 100%;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -15,11 +17,10 @@
   display: flex;
   gap: 1rem;
 }
-.calendar__grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td {
+  border: 2px solid gray;
 }

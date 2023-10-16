@@ -1,4 +1,4 @@
 <div [ngClass]="{'current-day': isToday}">
-  <ng-content select=".day"></ng-content>
+  <p>{{day | setWeekDayNames: weekIndex}}</p>
   <div>{{(event | async)?.title}}</div>
 </div>

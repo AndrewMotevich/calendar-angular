@@ -3,13 +3,6 @@
   height: 7rem;
   display: block;
   box-sizing: border-box;
-  border: 2px solid gray;
-  margin: 0;
-  padding: 0;
-  & > *{
-    margin: 0;
-    padding: 0;
-  }
 }
 .current-day {
   width: 100%;

@@ -8,32 +8,32 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
   public currentDate: Date = new Date();
-  public daysOnScreen: Date[] = [];
+  public weeks: Date[][] = [];
   public currentDayIndex: number | null;
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.generateCalendar();
   }
 
-  public prevMonth() {
+  public prevMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.generateCalendar();
     this.currentDate = new Date(this.currentDate);
   }
 
-  public nextMonth() {
+  public nextMonth() : void{
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.generateCalendar();
     this.currentDate = new Date(this.currentDate);
   }
 
-  public toCurrent() {
+  public toCurrent(): void {
     this.currentDate = new Date();
     this.generateCalendar();
   }
 
-  private generateCalendar() {
-    this.daysOnScreen = [];
+  private generateCalendar(): void {
+    this.weeks = [];
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
 
@@ -44,8 +44,12 @@ export class CalendarComponent implements OnInit {
     startDate.setDate(startDate.getDate() - ((startDate.getDay() + 6) % 7));
 
     while (startDate <= lastDayOfMonth) {
-      this.daysOnScreen.push(new Date(startDate));
-      startDate.setDate(startDate.getDate() + 1);
+      const week = [];
+      for (let i = 0; i < 7; i += 1){
+        week.push(new Date(startDate));
+        startDate.setDate(startDate.getDate() + 1);
+      }
+      this.weeks.push(week);
     }
   }
 }
