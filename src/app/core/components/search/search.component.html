@@ -15,6 +15,7 @@
     *ngFor="let event of events"
     class="event-item"
     (click)="setSelected(event.date)">
-    <span class="event-item__title">{{event?.title}}</span> {{event?.date.toISOString()}}
+    <span class="event-item__title">{{event?.title}}</span>
+    {{event?.date.toISOString()}}
   </div>
 </ng-template>

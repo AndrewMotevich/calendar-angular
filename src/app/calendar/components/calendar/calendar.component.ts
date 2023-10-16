@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CalendarService } from '../../../shared/services/calendar.service';
-import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calendar',
@@ -32,11 +31,5 @@ export class CalendarComponent implements OnInit {
 
   public toCurrent(): void {
     this.calendarService.toCurrent();
-  }
-
-  public setSelected(day: Date, popover: NgbPopover) {
-    // popover.toggle();
-    // day.setHours(0, 0, 0, 0);
-    // this.calendarService.setSelectedDate(day);
   }
 }

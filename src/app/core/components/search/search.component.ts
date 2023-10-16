@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { parseRussianDate } from 'src/app/shared/helpers/parse-russian-date.helper';
@@ -27,11 +23,11 @@ export class SearchComponent {
     private calendarService: CalendarService
   ) {}
 
-  public setSelected(day: Date): void{
+  public setSelected(day: Date): void {
     this.calendarService.setSelectedDate(day);
   }
 
-  public search(): void{
+  public search(): void {
     if (!this.queryString.getRawValue()) return;
     this.events = this.eventService.getEvents().map((event) => {
       return this.compareEventAndString(event);

@@ -7,7 +7,6 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
-import { CalendarService } from 'src/app/shared/services/calendar.service';
 import { EventService } from '../../../shared/services/event.service';
 
 @Component({
@@ -25,7 +24,7 @@ export class EventFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private eventService: EventService,
+    private eventService: EventService
   ) {
     this.eventForm = this.formBuilder.group({
       title: ['', Validators.required],

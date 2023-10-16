@@ -25,14 +25,17 @@ export class DayCellComponent implements OnInit, OnDestroy {
   public event: Observable<IEvent>;
   private unsubscribe = new Subject<boolean>();
 
-  constructor(private eventService: EventService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private eventService: EventService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
     this.currentDate.setHours(0, 0, 0, 0);
     this.isToday = this.day.toDateString() === this.currentDate.toDateString();
     this.eventService
-    .getEventsObserver()
-    .pipe(takeUntil(this.unsubscribe))
+      .getEventsObserver()
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
         this.event = of(this.eventService.getEventByDate(this.day));
         this.cdr.markForCheck();

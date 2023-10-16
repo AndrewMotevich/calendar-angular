@@ -23,7 +23,7 @@
       <tr *ngFor="let week of (weeks$ | async); let index = index">
         <td
           *ngFor="let day of week"
-          [appSelectDay]="popoverInstance"
+          appSelectDay
           [day]="day">
 
           <app-day-cell
@@ -33,8 +33,7 @@
             [autoClose]="'outside'"
             placement="end"
             triggers="click"
-            #popoverInstance="ngbPopover"
-            (click)="setSelected(day, popoverInstance)"></app-day-cell>
+            #popoverInstance="ngbPopover"></app-day-cell>
 
           <ng-template #popover>
             <app-event-form

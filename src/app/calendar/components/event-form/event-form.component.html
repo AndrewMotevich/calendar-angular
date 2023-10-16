@@ -1,21 +1,52 @@
-<form class="event-form" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+<form
+  class="event-form"
+  [formGroup]="eventForm"
+  (ngSubmit)="onSubmit()">
 
   <div class="input-wrapper">
-    <button type="button" class="btn-close" aria-label="Close" (click)="closePopover()"></button>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closePopover()"></button>
 
-    <input type="text" id="title" formControlName="title" placeholder="Событие">
+    <input
+      type="text"
+      id="title"
+      formControlName="title"
+      placeholder="Событие">
 
-    <input type="date" id="date" formControlName="date" placeholder="День/месяц/год">
+    <input
+      type="date"
+      id="date"
+      formControlName="date"
+      placeholder="День/месяц/год">
 
-    <input type="text" id="participants" formControlName="participants" placeholder="Имена участников">
+    <input
+      type="text"
+      id="participants"
+      formControlName="participants"
+      placeholder="Имена участников">
   </div>
 
   <div class="input-wrapper">
-    <textarea id="description" formControlName="description" placeholder="Описание" rows="6"></textarea>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Описание"
+      rows="6"></textarea>
 
     <div class="button-wrapper">
-      <button class="button-normal" type="submit">Готово</button>
-      <button class="button-normal" (click)="deleteEvent()">Удалить</button>
+      <button
+        class="button-normal"
+        type="submit">
+        Готово
+      </button>
+      <button
+        class="button-normal"
+        (click)="deleteEvent()">
+        Удалить
+      </button>
     </div>
   </div>
 </form>

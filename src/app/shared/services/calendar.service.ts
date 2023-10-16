@@ -66,7 +66,7 @@ export class CalendarService {
     this.currentDate$.next(this.currentDate);
   }
 
-  private resetDate(){
+  private resetDate() {
     this._selectedDate = new Date();
     this.weeks$.next(this.weeks);
     this.currentDate$.next(this.currentDate);

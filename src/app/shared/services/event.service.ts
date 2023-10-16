@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
-import { CalendarService } from './calendar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ export class EventService {
   }
 
   public getEvents(): IEvent[] {
-    return this.events
+    return this.events;
   }
 
   public getEventsObserver(): Observable<IEvent[]> {
@@ -32,7 +31,7 @@ export class EventService {
   }
 
   public submitEvent(event: IEvent): void {
-    if (event.id){
+    if (event.id) {
       this.editEvent(event);
       return;
     }
@@ -41,7 +40,6 @@ export class EventService {
     this.updateLocalStorage();
   }
 
-
   public deleteEvent(id: number): void {
     this.events = this.events.filter((event) => event.id !== id);
     this.events$.next(this.events);
@@ -49,8 +47,10 @@ export class EventService {
   }
 
   private editEvent(event: IEvent): void {
-    const editEventIndex = this.events.findIndex((item) => event.id === item.id);
-    this.events[editEventIndex] = {...event};
+    const editEventIndex = this.events.findIndex(
+      (item) => event.id === item.id
+    );
+    this.events[editEventIndex] = { ...event };
     this.events$.next(this.events);
     this.updateLocalStorage();
   }

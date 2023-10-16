@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TransformMonthNamePipe implements PipeTransform {
   transform(value: string): string {
-    const month =  value.split(' ')[0];
-    const year =  value.split(' ')[1];
+    const month = value.split(' ')[0];
+    const year = value.split(' ')[1];
     switch (month) {
       case 'Марта':
         return 'Март ' + year;
