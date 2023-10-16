@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuickAddComponent } from './core/components/quick-add/quick-add.component';
 import { SearchComponent } from './core/components/search/search.component';
+import { SelectDayDirective } from './calendar/directives/select-day.directive';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -29,6 +30,7 @@ registerLocaleData(localeRu, 'ru');
     EventFormComponent,
     QuickAddComponent,
     SearchComponent,
+    SelectDayDirective,
   ],
   imports: [BrowserModule, ReactiveFormsModule, NgbModule, NgbPopoverModule],
   providers: [{ provide: LOCALE_ID, useValue: 'en' }],

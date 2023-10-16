@@ -12,12 +12,16 @@
         <td *ngFor="let day of week">
 
           <app-day-cell
+            [appSelectDay]="popoverInstance"
+            [day]="day"
             [weekIndex]="index"
             [day]="day"
             [ngbPopover]="popover"
             [autoClose]="'outside'"
             placement="end"
-            #popoverInstance="ngbPopover"></app-day-cell>
+            triggers="click"
+            #popoverInstance="ngbPopover"
+            (click)="setSelected(day, popoverInstance)"></app-day-cell>
 
           <ng-template #popover>
             <app-event-form

@@ -5,10 +5,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IEvent } from 'src/app/shared/interfaces/event.interface';
-import { EventService } from '../../services/event.service';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarService } from '../../services/calendar.service';
+import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { CalendarService } from 'src/app/shared/services/calendar.service';
+import { EventService } from '../../../shared/services/event.service';
 
 @Component({
   selector: 'app-event-form',
@@ -26,7 +26,6 @@ export class EventFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private eventService: EventService,
-    private calendarService: CalendarService
   ) {
     this.eventForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -42,13 +41,12 @@ export class EventFormComponent implements OnInit {
       this.day.toISOString().slice(0, 10)
     );
     this.setEvenValue();
-    console.log(this.calendarService.currentDate$.subscribe(res => console.log(res)))
   }
 
   public onSubmit() {
     // TODO: add validation
     if (this.eventForm.invalid) {
-      alert("Invalid form!");
+      alert('Invalid form!');
       return;
     }
 

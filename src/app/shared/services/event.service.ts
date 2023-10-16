@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { CalendarService } from './calendar.service';
 
 @Injectable({
   providedIn: 'root',

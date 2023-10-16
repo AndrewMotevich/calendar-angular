@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
-import { EventService } from 'src/app/calendar/services/event.service';
+import { EventService } from 'src/app/shared/services/event.service';
 import { parseRussianDate } from 'src/app/shared/helpers/parse-russian-date.helper';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
 

@@ -1,17 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
-import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
-import { IEvent } from 'src/app/shared/interfaces/event.interface';
-import { Observable, map } from 'rxjs';
-import { EventService } from 'src/app/calendar/services/event.service';
 import { FormControl, Validators } from '@angular/forms';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { parseRussianDate } from 'src/app/shared/helpers/parse-russian-date.helper';
-import { CalendarComponent } from 'src/app/calendar/components/calendar/calendar.component';
-import { CalendarService } from '../../../calendar/services/calendar.service';
+import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { EventService } from 'src/app/shared/services/event.service';
+import { CalendarService } from '../../../shared/services/calendar.service';
 
 @Component({
   selector: 'app-search',
@@ -30,7 +27,11 @@ export class SearchComponent {
     private calendarService: CalendarService
   ) {}
 
-  public search() {
+  public setSelected(day: Date): void{
+    this.calendarService.setSelectedDate(day);
+  }
+
+  public search(): void{
     if (!this.queryString.getRawValue()) return;
     this.events = this.eventService.getEvents().map((event) => {
       return this.compareEventAndString(event);
@@ -48,18 +49,18 @@ export class SearchComponent {
     return null;
   }
 
-  private checkTitle(title: string) {
+  private checkTitle(title: string): boolean {
     if (!title) return false;
     return title === this.queryString.getRawValue();
   }
 
-  private checkDate(date: Date) {
+  private checkDate(date: Date): boolean {
     if (!date) return false;
     const parsedDate = parseRussianDate(this.queryString.getRawValue());
     return date.toDateString() === parsedDate?.toDateString();
   }
 
-  private checkParticipants(participants: string[]) {
+  private checkParticipants(participants: string[]): boolean {
     if (!participants) return false;
     for (let i = 0; i < participants.length; i += 1) {
       if (participants[i] === this.queryString.getRawValue()) return true;

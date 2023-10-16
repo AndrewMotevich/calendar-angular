@@ -11,7 +11,7 @@
   >
 
 <ng-template #popover>
-  <div *ngFor="let event of events" class="event-item">
+  <div *ngFor="let event of events" class="event-item" (click)="setSelected(event.date)">
     {{event?.title}} {{event?.date.getDate()}}
   </div>
 </ng-template>

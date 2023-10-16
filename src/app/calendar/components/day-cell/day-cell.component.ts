@@ -6,9 +6,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { IEvent } from 'src/app/shared/interfaces/event.interface';
-import { EventService } from '../../services/event.service';
 import { Observable, Subject, of, takeUntil } from 'rxjs';
+import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { EventService } from '../../../shared/services/event.service';
 
 @Component({
   selector: 'app-day-cell',
@@ -31,8 +31,8 @@ export class DayCellComponent implements OnInit, OnDestroy {
     this.currentDate.setHours(0, 0, 0, 0);
     this.isToday = this.day.toDateString() === this.currentDate.toDateString();
     this.eventService
-      .getEventsObserver()
-      .pipe(takeUntil(this.unsubscribe))
+    .getEventsObserver()
+    .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
         this.event = of(this.eventService.getEventByDate(this.day));
         this.cdr.markForCheck();

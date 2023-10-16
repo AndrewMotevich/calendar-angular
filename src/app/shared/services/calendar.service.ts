@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,37 +7,40 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CalendarService {
   private currentDate: Date = new Date();
+  private _selectedDate: Date = new Date();
   private weeks: Date[][] = [];
 
   public weeks$ = new BehaviorSubject(this.weeks);
   public currentDate$ = new BehaviorSubject(this.currentDate);
-  public selectedDate$ = new BehaviorSubject(this.currentDate);
 
-  public setSelectedDate(date: Date) {
+  public get selectedDate() {
+    return this._selectedDate;
+  }
+
+  public setSelectedDate(date: Date, popover?: NgbPopover) {
     this.currentDate = date;
-    this.currentDate$.next(date);
-    console.log(date)
+    this.currentDate$.next(this.currentDate);
+    this._selectedDate = date;
+    this.generateCalendar();
+    if (popover) popover.open();
   }
 
   public prevMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.generateCalendar();
-    this.weeks$.next(this.weeks);
-    this.currentDate$.next(this.currentDate);
+    this.resetDate();
   }
 
   public nextMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.generateCalendar();
-    this.weeks$.next(this.weeks)
-    this.currentDate$.next(this.currentDate);
+    this.resetDate();
   }
 
   public toCurrent(): void {
     this.currentDate = new Date();
     this.generateCalendar();
-    this.weeks$.next(this.weeks)
-    this.currentDate$.next(this.currentDate);
+    this.resetDate();
   }
 
   public generateCalendar(): void {
@@ -58,7 +62,13 @@ export class CalendarService {
       }
       this.weeks.push(week);
     }
-    this.weeks$.next(this.weeks)
+    this.weeks$.next(this.weeks);
+    this.currentDate$.next(this.currentDate);
+  }
+
+  private resetDate(){
+    this._selectedDate = new Date();
+    this.weeks$.next(this.weeks);
     this.currentDate$.next(this.currentDate);
   }
 }
