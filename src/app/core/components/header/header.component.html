@@ -1,11 +1,14 @@
 <div class="header-wrapper">
-  <div class="button-wrapper">
+  <div class="buttons-wrapper">
     <button
+      class="buttons"
       [ngbPopover]="popover"
       [autoClose]="'outside'"
       placement="bottom"
-      #popoverInstance="ngbPopover">Добавить</button>
-    <button>Обновить</button>
+      #popoverInstance="ngbPopover">
+      Добавить
+    </button>
+    <button class="buttons">Обновить</button>
   </div>
   <app-search></app-search>
 </div>

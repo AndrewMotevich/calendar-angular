@@ -20,5 +20,12 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+.button-simple {
+  width: 5rem;
+  height: 1.6rem;
+  border-radius: 0.3rem;
+  border: 1px solid grey;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

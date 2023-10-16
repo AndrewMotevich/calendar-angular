@@ -1,17 +1,20 @@
+<i class="bi bi-search"></i>
 <input
   type="text"
   placeholder="Событие, дата или участник"
   [formControl]="queryString"
   [ngbPopover]="popover"
-  triggers=""
+  triggers
   [autoClose]="'outside'"
   placement="bottom"
   #popoverInstance="ngbPopover"
-  (keyup.enter)="search()"
-  >
+  (keyup.enter)="search()">
 
 <ng-template #popover>
-  <div *ngFor="let event of events" class="event-item" (click)="setSelected(event.date)">
-    {{event?.title}} {{event?.date.getDate()}}
+  <div
+    *ngFor="let event of events"
+    class="event-item"
+    (click)="setSelected(event.date)">
+    <span class="event-item__title">{{event?.title}}</span> {{event?.date.toISOString()}}
   </div>
 </ng-template>

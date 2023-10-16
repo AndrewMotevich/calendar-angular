@@ -1,7 +1,18 @@
+:host {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  input {
+    width: 15rem;
+  }
+}
 .event-item {
-  width: 10rem;
+  width: 15rem;
   &:hover {
     cursor: pointer;
-    border: 1px solid grey;
+    background-color: rgba(229, 241, 249, 100);
+  }
+  .event-item__title{
+    color: rgba(2, 113, 199, 100)
   }
 }
