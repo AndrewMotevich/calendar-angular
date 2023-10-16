@@ -1,19 +1,32 @@
 <div class="calendar-wrapper">
   <div class="month-wrapper">
-    <button (click)="prevMonth()"><</button>
+    <button
+      class="button-normal"
+      (click)="prevMonth()">
+      ◂
+    </button>
     <h2>{{ (currentDate$ | async).toDateString() | date: 'MMMM yyyy' : '' : 'ru' | titlecase | transformMonthName }}</h2>
-    <button (click)="nextMonth()">></button>
-    <button (click)="toCurrent()">Сегодня</button>
+    <button
+      class="button-normal"
+      (click)="nextMonth()">
+      ▸
+    </button>
+    <button
+      class="button-normal"
+      (click)="toCurrent()">
+      Сегодня
+    </button>
   </div>
 
   <table>
     <tbody>
       <tr *ngFor="let week of (weeks$ | async); let index = index">
-        <td *ngFor="let day of week">
+        <td
+          *ngFor="let day of week"
+          [appSelectDay]="popoverInstance"
+          [day]="day">
 
           <app-day-cell
-            [appSelectDay]="popoverInstance"
-            [day]="day"
             [weekIndex]="index"
             [day]="day"
             [ngbPopover]="popover"

@@ -1,5 +1,25 @@
 .event-form {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  .button-wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .button-normal {
+    height: 1.6rem;
+    border-radius: 0.3rem;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+  }
+}
+.input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.btn-close{
+  align-self: end;
 }
