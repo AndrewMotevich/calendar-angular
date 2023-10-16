@@ -1,3 +1,4 @@
+<button type="button" class="btn-close" aria-label="Close" (click)="closePopover()"></button>
 <form class="event-form" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
   <input type="text" id="title" formControlName="title" placeholder="Событие">
 
@@ -9,6 +10,6 @@
 
   <div>
     <button type="submit">Готово</button>
-    <button>Удалить</button>
+    <button (click)="deleteEvent()">Удалить</button>
   </div>
 </form>

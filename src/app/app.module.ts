@@ -13,6 +13,8 @@ import { SetWeekDayNamesPipe } from './calendar/pipes/set-week-day-names.pipe';
 import { EventFormComponent } from './calendar/components/event-form/event-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { QuickAddComponent } from './core/components/quick-add/quick-add.component';
+import { SearchComponent } from './core/components/search/search.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -25,6 +27,8 @@ registerLocaleData(localeRu, 'ru');
     TransformMonthNamePipe,
     SetWeekDayNamesPipe,
     EventFormComponent,
+    QuickAddComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, NgbModule, NgbPopoverModule],
   providers: [{ provide: LOCALE_ID, useValue: 'en' }],

@@ -16,6 +16,10 @@ export class EventService {
     }
   }
 
+  public getEvents(): IEvent[] {
+    return this.events
+  }
+
   public getEventsObserver(): Observable<IEvent[]> {
     return this.events$.asObservable();
   }
@@ -26,17 +30,16 @@ export class EventService {
     });
   }
 
-  public addEvent(event: Omit<IEvent, 'id'>): void {
-    this.events.push({ id: Date.now(), ...event });
+  public submitEvent(event: IEvent): void {
+    if (event.id){
+      this.editEvent(event);
+      return;
+    }
+    this.events.push({ ...event, id: Date.now() });
     this.events$.next(this.events);
     this.updateLocalStorage();
   }
 
-  public editEvent(event: IEvent, index: number): void {
-    this.events[index] = event;
-    this.events$.next(this.events);
-    this.updateLocalStorage();
-  }
 
   public deleteEvent(id: number): void {
     this.events = this.events.filter((event) => event.id !== id);
@@ -44,7 +47,14 @@ export class EventService {
     this.updateLocalStorage();
   }
 
-  private updateLocalStorage() {
+  private editEvent(event: IEvent): void {
+    const editEventIndex = this.events.findIndex((item) => event.id === item.id);
+    this.events[editEventIndex] = {...event};
+    this.events$.next(this.events);
+    this.updateLocalStorage();
+  }
+
+  private updateLocalStorage(): void {
     localStorage.setItem('events', JSON.stringify(this.events));
   }
 

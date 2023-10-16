@@ -1,1 +1,15 @@
-<p>header works!</p>
+<div class="header-wrapper">
+  <div class="button-wrapper">
+    <button
+      [ngbPopover]="popover"
+      [autoClose]="'outside'"
+      placement="bottom"
+      #popoverInstance="ngbPopover">Добавить</button>
+    <button>Обновить</button>
+  </div>
+  <app-search></app-search>
+</div>
+
+<ng-template #popover>
+  <app-quick-add [popover]="popoverInstance"></app-quick-add>
+</ng-template>

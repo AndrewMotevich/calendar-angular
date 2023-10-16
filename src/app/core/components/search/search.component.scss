@@ -1,0 +1,7 @@
+.event-item {
+  width: 10rem;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid grey;
+  }
+}

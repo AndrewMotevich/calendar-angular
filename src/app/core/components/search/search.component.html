@@ -1,0 +1,17 @@
+<input
+  type="text"
+  placeholder="Событие, дата или участник"
+  [formControl]="queryString"
+  [ngbPopover]="popover"
+  triggers=""
+  [autoClose]="'outside'"
+  placement="bottom"
+  #popoverInstance="ngbPopover"
+  (keyup.enter)="search()"
+  >
+
+<ng-template #popover>
+  <div *ngFor="let event of events" class="event-item">
+    {{event?.title}} {{event?.date.getDate()}}
+  </div>
+</ng-template>
